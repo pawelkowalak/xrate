@@ -17,7 +17,9 @@ import (
 
 // Database provides access to exchange rates data.
 type Database interface {
+	// Get retrieves FixerRates object from cache based on provided key.
 	Get([]byte) (*FixerRates, error)
+	// Set puts new object (slice of bytes) under given key.
 	Set([]byte, []byte) error
 }
 
