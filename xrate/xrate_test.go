@@ -12,7 +12,7 @@ type fakeLevelDB struct {
 }
 
 func (f *fakeLevelDB) Get(key []byte) (*FixerRates, error) {
-	if string(key) == string(cacheKey("200", "SEK")) {
+	if string(key) == string(cacheKey("SEK")) {
 		return &FixerRates{Base: "SEK"}, nil
 	}
 	return nil, leveldb.ErrNotFound

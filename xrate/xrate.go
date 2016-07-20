@@ -112,7 +112,7 @@ func (s *Service) Rates(amount, currency string) (*Rates, error) {
 	}
 
 	// Get from cache or fixer.io.
-	key := cacheKey(amount, currency)
+	key := cacheKey(currency)
 	fr, err := s.db.Get(key)
 	if err != nil {
 		fr, err = s.fetchRates(currency, key)
@@ -124,11 +124,10 @@ func (s *Service) Rates(amount, currency string) (*Rates, error) {
 // Constructs cache key under which we store cached rates in LevelDB.
 // Keys will rotate at midnight which could be improved as fixer.io
 // is updating their tables around 4pm.
-func cacheKey(amount, currency string) []byte {
+func cacheKey(currency string) []byte {
 	key := bytes.Buffer{}
 	key.WriteString(time.Now().Format("2006-01-02"))
 	key.WriteString(currency)
-	key.WriteString(amount)
 	return key.Bytes()
 }
 
