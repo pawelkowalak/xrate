@@ -1,4 +1,4 @@
-# Exchange Rates' Converer
+# Exchange Rates Converter
 
 This is a simple HTTP API that wraps http://fixer.io/ with extra functionality.
 
